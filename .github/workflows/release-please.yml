@@ -17,31 +17,9 @@ jobs:
     if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'develop'
     runs-on: ubuntu-latest
     steps:
-      - uses: google-github-actions/release-please-action@v4
+      - uses: googleapis/release-please-action@v4
         with:
-          # Use the latest version of release-please
           release-type: node
-          # The name of your project
-          package-name: ecommerce
-          # Configure to work with develop branch
-          default-branch: main
-          # Include develop branch in version calculation
-          include-v-in-tag: true
-          # Create releases when PRs are merged to main
-          command: manifest
-          # Configure the release strategy
-          release-as: minor
-          # Configure conventional commits
-          changelog-types: |
-            [
-              {"type":"feat","section":"Features","hidden":false},
-              {"type":"fix","section":"Bug Fixes","hidden":false},
-              {"type":"perf","section":"Performance Improvements","hidden":false},
-              {"type":"revert","section":"Reverts","hidden":false},
-              {"type":"docs","section":"Documentation","hidden":false},
-              {"type":"style","section":"Styles","hidden":false},
-              {"type":"refactor","section":"Code Refactoring","hidden":false},
-              {"type":"test","section":"Tests","hidden":false},
-              {"type":"ci","section":"Continuous Integration","hidden":false},
-              {"type":"chore","section":"Miscellaneous Chores","hidden":true}
-            ]
+          token: ${{ secrets.GITHUB_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
