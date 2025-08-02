@@ -183,6 +183,35 @@ src/
 5. After review, merge to `develop`
 6. When ready for release, create PR from `develop` to `main`
 
+## Code Quality
+
+```bash
+   npm run lint          # Check for issues
+   npm run lint:fix      # Auto-fix issues
+   npm run format        # Format code
+   npm run type-check    # Type checking
+```
+
+## ✍️ Conventional Commits (Summary)
+
+We use [Conventional Commits](https://www.conventionalcommits.org/) to automate changelogs and versioning with [release-please](https://github.com/googleapis/release-please).
+
+| Type       | Emoji | Description                           |
+| ---------- | :---: | ------------------------------------- |
+| `feat`     |  ✨   | Add a new feature                     |
+| `fix`      |  🐛   | Fix a bug                             |
+| `docs`     |  📝   | Update documentation                  |
+| `style`    |  🎨   | Code style changes (no logic changes) |
+| `refactor` |  ♻️   | Refactor code (no feature or bug fix) |
+| `perf`     |  ⚡️  | Improve performance                   |
+| `test`     |  ✅   | Add or update tests                   |
+| `chore`    |  🔧   | Maintenance tasks (build, deps, etc.) |
+| `ci`       |  🛠️   | CI/CD config or script changes        |
+| `build`    |  📦   | Build system or dependency changes    |
+| `revert`   |  ⏪   | Revert a previous commit              |
+
+> 🔥 **Breaking changes**: Use `!` (e.g. `feat!:`) or add a `BREAKING CHANGE:` footer to trigger a **major version bump**.
+
 ## 📝 License
 
 This project is licensed under the MIT License.
