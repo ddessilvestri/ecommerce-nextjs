@@ -176,7 +176,7 @@ src/
 5. After review, merge to `develop`
 6. When ready for release, create PR from `develop` to `main`
 
-## Code Quality
+## Code Quality - Run before commiting
 
 ```bash
    npm run lint          # Check for issues
