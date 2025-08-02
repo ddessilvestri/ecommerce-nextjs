@@ -65,13 +65,6 @@ Automated version management:
   - Updates package.json version
   - Creates GitHub release when merged
 
-### **Deployment Workflow** (`.github/workflows/deploy.yml`)
-
-Automated deployment to Vercel:
-
-- **Triggers**: Push to main branch
-- **Actions**: Builds and deploys to production
-
 ### **Dependency Update Workflow** (`.github/workflows/dependency-update.yml`)
 
 Automated dependency management:
