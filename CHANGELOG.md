@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.1.1](https://github.com/ddessilvestri/ecommerce-nextjs/compare/v1.1.0...v1.1.1) (2025-08-02)
+
+
+### Bug Fixes
+
+* update husky pre-commit hook for v10 compatibility ([a64b020](https://github.com/ddessilvestri/ecommerce-nextjs/commit/a64b020afd8c30cc67d46b9cc9fc0342537915c7))
+
+## [1.1.0](https://github.com/ddessilvestri/ecommerce-nextjs/compare/v1.0.2...v1.1.0) (2025-08-02)
+
+
+### Features
+
+* add comprehensive code quality tools ([558c1cf](https://github.com/ddessilvestri/ecommerce-nextjs/commit/558c1cf3eda2b990ad242de60fa05b44a73c21cc))
+
+
+### Bug Fixes
+
+* resolve merge conflict in release manifest ([792c9d6](https://github.com/ddessilvestri/ecommerce-nextjs/commit/792c9d62a5905877afe59cc9ef598bcc3f4420e4))
+
 ## [1.0.2](https://github.com/ddessilvestri/ecommerce-nextjs/compare/v1.0.1...v1.0.2) (2025-08-02)
 
 ### Bug Fixes
