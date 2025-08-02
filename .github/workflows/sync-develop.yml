@@ -8,9 +8,8 @@ on:
 
 jobs:
   sync-develop:
-    # Only run if the merged PR was a release PR (created by release-please)
-    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.title, 'chore(main): release')
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.title, 'chore(main): release')
     steps:
       - uses: actions/checkout@v4
         with:
