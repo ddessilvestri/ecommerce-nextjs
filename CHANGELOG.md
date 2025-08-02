@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.2](https://github.com/ddessilvestri/ecommerce-nextjs/compare/v1.0.1...v1.0.2) (2025-08-02)
+
+### Bug Fixes
+
+- **ci:** correct release-please configuration ([30a4db3](https://github.com/ddessilvestri/ecommerce-nextjs/commit/30a4db3d23031b6bc999fd495ed575a85962fa69))
+
 ## [1.0.1](https://github.com/ddessilvestri/ecommerce-nextjs/compare/v1.0.0...v1.0.1) (2025-08-02)
 
 ### Bug Fixes
