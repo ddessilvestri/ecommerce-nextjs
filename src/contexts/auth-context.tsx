@@ -1,7 +1,14 @@
 'use client';
 
-import { createContext, useContext, useCallback, useState, ReactNode, useEffect } from 'react';
-import { Amplify } from 'aws-amplify';
+import {
+  createContext,
+  useContext,
+  useCallback,
+  useState,
+  ReactNode,
+  useEffect,
+} from 'react';
+
 import { signIn, signOut, getCurrentUser } from 'aws-amplify/auth';
 import { User, AuthState, LoginCredentials } from '@/types/auth';
 import { configureAmplify } from '@/config/amplify';
@@ -19,51 +26,51 @@ const initialState: AuthState = {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-type Props = { children : ReactNode} 
+type Props = { children: ReactNode };
 export function AuthProvider({ children }: Props) {
   const [state, setState] = useState<AuthState>(initialState);
 
   useEffect(() => {
     // Configure Amplify on mount
     configureAmplify();
-    
+
     // Check if user is already signed in
     getCurrentUser()
-      .then(user => {
+      .then((user) => {
         const userInfo: User = {
           id: user.userId,
           email: user.signInDetails?.loginId || '',
-          name: user.username
+          name: user.username,
         };
         setState({
           user: userInfo,
           isAuthenticated: true,
-          isLoading: false
+          isLoading: false,
         });
       })
       .catch(() => {
-        setState(prev => ({ ...prev, isLoading: false }));
+        setState((prev) => ({ ...prev, isLoading: false }));
       });
   }, []);
 
   const login = useCallback(async (credentials: LoginCredentials) => {
     try {
-      const { isSignedIn, nextStep } = await signIn({ 
+      const { isSignedIn, nextStep } = await signIn({
         username: credentials.email,
         password: credentials.password,
       });
-      
+
       if (isSignedIn) {
         const userInfo = await getCurrentUser();
         const user: User = {
           id: userInfo.userId,
           email: userInfo.signInDetails?.loginId || '',
-          name: userInfo.username
+          name: userInfo.username,
         };
         setState({
           user,
           isAuthenticated: true,
-          isLoading: false
+          isLoading: false,
         });
       } else {
         console.log('Additional authentication step required:', nextStep);
@@ -81,7 +88,7 @@ export function AuthProvider({ children }: Props) {
       setState({
         user: null,
         isAuthenticated: false,
-        isLoading: false
+        isLoading: false,
       });
     } catch (error) {
       console.error('Error signing out:', error);

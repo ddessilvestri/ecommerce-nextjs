@@ -1,14 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import {
   Card,
   CardContent,
@@ -16,12 +15,14 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { useAuth } from "@/contexts/auth-context";
+} from '@/components/ui/card';
+import { useAuth } from '@/contexts/auth-context';
 
 const loginSchema = z.object({
-  email: z.string().email({ message: "Please enter a valid email address" }),
-  password: z.string().min(6, { message: "Password must be at least 6 characters" }),
+  email: z.string().email({ message: 'Please enter a valid email address' }),
+  password: z
+    .string()
+    .min(6, { message: 'Password must be at least 6 characters' }),
 });
 
 type LoginFormValues = z.infer<typeof loginSchema>;
@@ -31,15 +32,14 @@ interface LoginFormProps {
 }
 
 export function LoginForm({ onRegisterClick }: LoginFormProps) {
-  const router = useRouter();
   const { login } = useAuth();
   const [error, setError] = useState<string | null>(null);
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
 
@@ -54,14 +54,18 @@ export function LoginForm({ onRegisterClick }: LoginFormProps) {
         password: data.password,
       });
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred during login');
+      setError(
+        err instanceof Error ? err.message : 'An error occurred during login'
+      );
     }
   };
 
   return (
     <Card className="w-full">
       <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl font-bold text-center">Sign in</CardTitle>
+        <CardTitle className="text-2xl font-bold text-center">
+          Sign in
+        </CardTitle>
         <CardDescription className="text-center">
           Enter your email and password to access your account
         </CardDescription>
@@ -74,7 +78,7 @@ export function LoginForm({ onRegisterClick }: LoginFormProps) {
               id="email"
               type="email"
               placeholder="m@example.com"
-              {...form.register("email")}
+              {...form.register('email')}
               disabled={isLoading}
             />
             {form.formState.errors.email && (
@@ -88,7 +92,7 @@ export function LoginForm({ onRegisterClick }: LoginFormProps) {
             <Input
               id="password"
               type="password"
-              {...form.register("password")}
+              {...form.register('password')}
               disabled={isLoading}
             />
             {form.formState.errors.password && (
@@ -98,28 +102,22 @@ export function LoginForm({ onRegisterClick }: LoginFormProps) {
             )}
           </div>
           {error && (
-            <div className="text-red-500 text-sm text-center">
-              {error}
-            </div>
+            <div className="text-red-500 text-sm text-center">{error}</div>
           )}
         </CardContent>
         <CardFooter className="flex flex-col space-y-2">
-          <Button 
-            type="submit" 
-            className="w-full"
-            disabled={isLoading}
-          >
-            {isLoading ? "Signing in..." : "Sign in"}
+          <Button type="submit" className="w-full" disabled={isLoading}>
+            {isLoading ? 'Signing in...' : 'Sign in'}
           </Button>
           <p className="text-sm text-center text-gray-600">
-            Don't have an account?{' '}
-                          <button
-                type="button"
-                onClick={onRegisterClick}
-                className="text-blue-600 hover:underline"
-              >
-                Sign up
-              </button>
+            Don&apos;t have an account?{' '}
+            <button
+              type="button"
+              onClick={onRegisterClick}
+              className="text-blue-600 hover:underline"
+            >
+              Sign up
+            </button>
           </p>
         </CardFooter>
       </form>

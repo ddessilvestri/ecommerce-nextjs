@@ -2,14 +2,13 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
 import { signUp, confirmSignUp } from 'aws-amplify/auth';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import {
   Card,
   CardContent,
@@ -17,21 +16,27 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { useAuth } from "@/contexts/auth-context";
+} from '@/components/ui/card';
 
-const registerSchema = z.object({
-  email: z.string().email({ message: "Please enter a valid email address" }),
-  password: z.string()
-    .min(8, { message: "Password must be at least 8 characters" })
-    .regex(/[A-Z]/, { message: "Password must contain at least one uppercase letter" })
-    .regex(/[a-z]/, { message: "Password must contain at least one lowercase letter" })
-    .regex(/[0-9]/, { message: "Password must contain at least one number" }),
-  confirmPassword: z.string()
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ["confirmPassword"],
-});
+const registerSchema = z
+  .object({
+    email: z.string().email({ message: 'Please enter a valid email address' }),
+    password: z
+      .string()
+      .min(8, { message: 'Password must be at least 8 characters' })
+      .regex(/[A-Z]/, {
+        message: 'Password must contain at least one uppercase letter',
+      })
+      .regex(/[a-z]/, {
+        message: 'Password must contain at least one lowercase letter',
+      })
+      .regex(/[0-9]/, { message: 'Password must contain at least one number' }),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ['confirmPassword'],
+  });
 
 type RegisterFormValues = z.infer<typeof registerSchema>;
 
@@ -41,7 +46,6 @@ interface RegisterFormProps {
 
 export function RegisterForm({ onLoginClick }: RegisterFormProps) {
   const router = useRouter();
-  const { isAuthenticated } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const [isVerifying, setIsVerifying] = useState(false);
   const [verificationCode, setVerificationCode] = useState('');
@@ -50,9 +54,9 @@ export function RegisterForm({ onLoginClick }: RegisterFormProps) {
   const form = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
-      email: "",
-      password: "",
-      confirmPassword: "",
+      email: '',
+      password: '',
+      confirmPassword: '',
     },
   });
 
@@ -95,7 +99,9 @@ export function RegisterForm({ onLoginClick }: RegisterFormProps) {
     return (
       <Card className="w-full">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">Verify your email</CardTitle>
+          <CardTitle className="text-2xl font-bold text-center">
+            Verify your email
+          </CardTitle>
           <CardDescription className="text-center">
             Enter the verification code sent to your email
           </CardDescription>
@@ -112,16 +118,11 @@ export function RegisterForm({ onLoginClick }: RegisterFormProps) {
             />
           </div>
           {error && (
-            <div className="text-red-500 text-sm text-center">
-              {error}
-            </div>
+            <div className="text-red-500 text-sm text-center">{error}</div>
           )}
         </CardContent>
         <CardFooter className="flex flex-col space-y-2">
-          <Button 
-            onClick={handleVerification}
-            className="w-full"
-          >
+          <Button onClick={handleVerification} className="w-full">
             Verify Email
           </Button>
         </CardFooter>
@@ -132,7 +133,9 @@ export function RegisterForm({ onLoginClick }: RegisterFormProps) {
   return (
     <Card className="w-full">
       <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl font-bold text-center">Create an account</CardTitle>
+        <CardTitle className="text-2xl font-bold text-center">
+          Create an account
+        </CardTitle>
         <CardDescription className="text-center">
           Enter your information to create your account
         </CardDescription>
@@ -145,7 +148,7 @@ export function RegisterForm({ onLoginClick }: RegisterFormProps) {
               id="email"
               type="email"
               placeholder="m@example.com"
-              {...form.register("email")}
+              {...form.register('email')}
               disabled={isLoading}
             />
             {form.formState.errors.email && (
@@ -159,7 +162,7 @@ export function RegisterForm({ onLoginClick }: RegisterFormProps) {
             <Input
               id="password"
               type="password"
-              {...form.register("password")}
+              {...form.register('password')}
               disabled={isLoading}
             />
             {form.formState.errors.password && (
@@ -173,7 +176,7 @@ export function RegisterForm({ onLoginClick }: RegisterFormProps) {
             <Input
               id="confirmPassword"
               type="password"
-              {...form.register("confirmPassword")}
+              {...form.register('confirmPassword')}
               disabled={isLoading}
             />
             {form.formState.errors.confirmPassword && (
@@ -183,18 +186,12 @@ export function RegisterForm({ onLoginClick }: RegisterFormProps) {
             )}
           </div>
           {error && (
-            <div className="text-red-500 text-sm text-center">
-              {error}
-            </div>
+            <div className="text-red-500 text-sm text-center">{error}</div>
           )}
         </CardContent>
         <CardFooter className="flex flex-col space-y-2">
-          <Button 
-            type="submit" 
-            className="w-full"
-            disabled={isLoading}
-          >
-            {isLoading ? "Creating account..." : "Create account"}
+          <Button type="submit" className="w-full" disabled={isLoading}>
+            {isLoading ? 'Creating account...' : 'Create account'}
           </Button>
           <p className="text-sm text-center text-gray-600">
             Already have an account?{' '}

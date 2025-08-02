@@ -1,15 +1,14 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { Button } from "@/components/ui/button";
-import { useAuth } from "@/contexts/auth-context";
-import { AuthForms } from "@/components/auth-forms";
-import { WelcomeSummary } from "@/components/welcome-summary";
+import { Button } from '@/components/ui/button';
+import { useAuth } from '@/contexts/auth-context';
+import { AuthForms } from '@/components/auth-forms';
+import { WelcomeSummary } from '@/components/welcome-summary';
 
 export default function Home() {
   const router = useRouter();
-  const { user, isAuthenticated, isLoading, login, logout } = useAuth();
-  
+  const { user, isAuthenticated, isLoading, logout } = useAuth();
 
   if (isLoading) {
     return (
@@ -44,22 +43,16 @@ export default function Home() {
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-2xl font-bold">Welcome, {user?.name}!</h1>
-          <Button 
-            onClick={() => logout()}
-            variant="outline"
-          >
+          <Button onClick={() => logout()} variant="outline">
             Logout
           </Button>
         </div>
-        
+
         <div className="bg-white rounded-lg shadow p-6">
           <h2 className="text-xl font-semibold mb-4">Dashboard</h2>
-          <p className="text-gray-600">
-            You are logged in as {user?.email}
-          </p>
+          <p className="text-gray-600">You are logged in as {user?.email}</p>
         </div>
       </div>
     </div>
   );
 }
-
