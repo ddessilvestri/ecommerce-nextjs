@@ -1,7 +1,8 @@
 name: Release Please
 
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
       - main
 
@@ -12,6 +13,8 @@ permissions:
 
 jobs:
   release-please:
+    # Only run if PR from develop to main is merged
+    if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'develop'
     runs-on: ubuntu-latest
     steps:
       - uses: google-github-actions/release-please-action@v4
