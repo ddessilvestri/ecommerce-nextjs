@@ -5,3 +5,4 @@ dist
 .git
 *.log
 .env* 
+CHANGELOG.md
