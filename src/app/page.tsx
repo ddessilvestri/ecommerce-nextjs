@@ -3,6 +3,8 @@
 import { useRouter } from 'next/navigation';
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/auth-context";
+import { AuthForms } from "@/components/auth-forms";
+import { WelcomeSummary } from "@/components/welcome-summary";
 
 export default function Home() {
   const router = useRouter();
@@ -22,10 +24,16 @@ export default function Home() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-xl font-semibold">Home page</h2>
-          <Button onClick={() => router.push('/login')}>Log in</Button>
+      <div className="min-h-screen flex">
+        <div className="w-1/2 p-8 flex items-center justify-center bg-gray-50">
+          <div className="max-w-md w-full">
+            <WelcomeSummary />
+          </div>
+        </div>
+        <div className="w-1/2 p-8 flex items-center justify-center">
+          <div className="max-w-md w-full">
+            <AuthForms />
+          </div>
         </div>
       </div>
     );
