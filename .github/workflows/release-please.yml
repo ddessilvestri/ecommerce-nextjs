@@ -15,7 +15,7 @@ permissions:
 jobs:
   release-please:
     # Only run if PR from develop to main is merged
-    if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'develop'
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - uses: googleapis/release-please-action@v4
@@ -24,4 +24,3 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
-          default-branch: main

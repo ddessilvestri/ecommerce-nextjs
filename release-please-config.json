@@ -21,7 +21,8 @@
       "bump-patch-for-minor-pre-major": true,
       "draft": false,
       "prerelease": false,
-      "include-v-in-tag": true
+      "include-v-in-tag": true,
+      "release-type": "node"
     }
   }
 }
