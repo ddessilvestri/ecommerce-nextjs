@@ -1,36 +1,188 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# E-commerce Platform
 
-## Getting Started
+A modern e-commerce platform built with Next.js, TypeScript, and AWS Amplify.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Authentication**: AWS Amplify integration with Cognito
+- **Modern UI**: Built with shadcn/ui components
+- **Type Safety**: Full TypeScript support
+- **Code Quality**: ESLint, Prettier, and Husky for code standards
+- **CI/CD**: Automated testing, building, and deployment
+- **Version Management**: Automated releases with release-please
+
+## 🛠️ Development Tools
+
+### Code Quality Tools
+
+#### **Prettier**
+
+- **Purpose**: Code formatting and style consistency
+- **Configuration**: `.prettierrc` and `.prettierignore`
+- **Commands**:
+  - `npm run format`: Format all files
+  - `npm run format:check`: Check if files are formatted
+
+#### **ESLint**
+
+- **Purpose**: Code linting and error detection
+- **Configuration**: Uses Next.js ESLint config
+- **Commands**:
+  - `npm run lint`: Lint all files
+  - `npm run lint:fix`: Lint and auto-fix issues
+
+#### **Husky + lint-staged**
+
+- **Purpose**: Pre-commit hooks for code quality
+- **What it does**: Runs ESLint and Prettier on staged files before commit
+- **Configuration**: `.husky/pre-commit` and `lint-staged` in package.json
+
+### Type Checking
+
+- **TypeScript**: Full type safety with `npm run type-check`
+- **Configuration**: `tsconfig.json`
+
+## 🔄 GitHub Actions
+
+### **CI Workflow** (`.github/workflows/ci.yml`)
+
+Runs on every push and PR to main/develop:
+
+- **Build**: Tests on Node.js 18.x and 20.x
+- **Type Check**: TypeScript type checking
+- **Lint**: ESLint validation
+- **Format Check**: Prettier formatting verification
+- **Security**: npm audit for vulnerabilities
+
+### **Release-Please Workflow** (`.github/workflows/release-please.yml`)
+
+Automated version management:
+
+- **Triggers**: When PR from develop to main is merged
+- **Actions**:
+  - Creates version bump PR
+  - Updates CHANGELOG.md
+  - Updates package.json version
+  - Creates GitHub release when merged
+
+### **Deployment Workflow** (`.github/workflows/deploy.yml`)
+
+Automated deployment to Vercel:
+
+- **Triggers**: Push to main branch
+- **Actions**: Builds and deploys to production
+
+### **Dependency Update Workflow** (`.github/workflows/dependency-update.yml`)
+
+Automated dependency management:
+
+- **Schedule**: Weekly on Sundays
+- **Actions**: Checks for outdated packages and updates them
+
+## 📋 Development Workflow
+
+### **Branch Strategy**
+
+```
+feature-branch → develop → main → release
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### **Commit Convention**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+We use [Conventional Commits](https://www.conventionalcommits.org/):
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `feat:` New features
+- `fix:` Bug fixes
+- `docs:` Documentation changes
+- `style:` Code style changes
+- `refactor:` Code refactoring
+- `test:` Adding or updating tests
+- `ci:` CI/CD changes
+- `chore:` Maintenance tasks
 
-## Learn More
+### **Release Process**
 
-To learn more about Next.js, take a look at the following resources:
+1. Work on feature branches
+2. Merge features to `develop`
+3. Create PR from `develop` to `main`
+4. Release-please creates version PR
+5. Merge version PR to create GitHub release
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Getting Started
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Prerequisites
 
-## Deploy on Vercel
+- Node.js 18+
+- npm or yarn
+- Git
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Installation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+# Clone the repository
+git clone <repository-url>
+cd ecommerce
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+# Edit .env.local with your AWS Amplify configuration
+```
+
+### Development
+
+```bash
+# Start development server
+npm run dev
+
+# Run linting
+npm run lint
+
+# Run type checking
+npm run type-check
+
+# Format code
+npm run format
+
+# Build for production
+npm run build
+```
+
+### Environment Variables
+
+Create a `.env.local` file with:
+
+```env
+NEXT_PUBLIC_AWS_REGION=your-region
+NEXT_PUBLIC_AWS_USER_POOL_ID=your-user-pool-id
+NEXT_PUBLIC_AWS_USER_POOL_CLIENT_ID=your-client-id
+```
+
+## 📁 Project Structure
+
+```
+src/
+├── app/                 # Next.js App Router pages
+├── components/          # Reusable UI components
+│   ├── ui/             # shadcn/ui components
+│   └── layouts/        # Layout components
+├── contexts/           # React contexts (auth, etc.)
+├── lib/               # Utility libraries
+├── types/             # TypeScript type definitions
+└── utils/             # Utility functions
+```
+
+## 🤝 Contributing
+
+1. Create a feature branch from `develop`
+2. Make your changes following the commit convention
+3. Run `npm run lint` and `npm run format` before committing
+4. Create a PR to `develop`
+5. After review, merge to `develop`
+6. When ready for release, create PR from `develop` to `main`
+
+## 📝 License
+
+This project is licensed under the MIT License.

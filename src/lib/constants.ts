@@ -5,15 +5,14 @@ export const MEDIA_API = process.env.NEXT_PUBLIC_MEDIA_API;
 export const MEDIA_URL = process.env.NEXT_PUBLIC_MEDIA_URL;
 
 export const ENDPOINTS = {
-    adminUsers: '/admin/users',
-    user: "/user",
-    address: "/address",
-    category: "/category",
-    product: "/product",
-    order: "/order",
-    stock: "/stock"
+  adminUsers: '/admin/users',
+  user: '/user',
+  address: '/address',
+  category: '/category',
+  product: '/product',
+  order: '/order',
+  stock: '/stock',
 };
 
-
-export const TOKEN = "token";
-export const BASKET = "basket";
+export const TOKEN = 'token';
+export const BASKET = 'basket';

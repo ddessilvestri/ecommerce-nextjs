@@ -24,7 +24,7 @@ export function getRelativeTime(date: Date, locale?: string): string {
   const rtf = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' });
   const now = new Date();
   const diff = date.getTime() - now.getTime();
-  
+
   const diffInSeconds = diff / 1000;
   const diffInMinutes = diffInSeconds / 60;
   const diffInHours = diffInMinutes / 60;
@@ -39,6 +39,6 @@ export function getRelativeTime(date: Date, locale?: string): string {
   if (Math.abs(diffInMinutes) >= 1) {
     return rtf.format(Math.round(diffInMinutes), 'minute');
   }
-  
+
   return rtf.format(Math.round(diffInSeconds), 'second');
 }
