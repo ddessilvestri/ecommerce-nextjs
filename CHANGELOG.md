@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/ddessilvestri/ecommerce-nextjs/compare/v1.0.0...v1.0.1) (2025-08-02)
+
+
+### Bug Fixes
+
+* **ci:** correct YAML syntax in sync-develop workflow ([9d59031](https://github.com/ddessilvestri/ecommerce-nextjs/commit/9d590314a531edbf44aaf09596853424eb716ea7))
+
 ## 1.0.0 (2025-08-02)
 
 
