@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/ddessilvestri/ecommerce-nextjs/compare/v1.1.1...v1.2.0) (2025-08-06)
+
+
+### Features
+
+* **search-bar:** add search bar and top navigation menu ([d150891](https://github.com/ddessilvestri/ecommerce-nextjs/commit/d150891ef483f0efe3e41dad4c6a0a36b40f62b1))
+* **search-bar:** add search bar and top navigation menu ([37b2584](https://github.com/ddessilvestri/ecommerce-nextjs/commit/37b2584bce3beb4c884ac54812b1674ec46f13a8))
+
 ## [1.1.1](https://github.com/ddessilvestri/ecommerce-nextjs/compare/v1.1.0...v1.1.1) (2025-08-02)
 
 
