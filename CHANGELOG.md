@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/ddessilvestri/ecommerce-nextjs/compare/v1.2.0...v1.3.0) (2025-08-13)
+
+
+### Features
+
+* **app:** add navbar menu, category bar, admin page ([af8d879](https://github.com/ddessilvestri/ecommerce-nextjs/commit/af8d87944ebb2f8d279b8b906a7163e168718aa0))
+
 ## [1.2.0](https://github.com/ddessilvestri/ecommerce-nextjs/compare/v1.1.1...v1.2.0) (2025-08-06)
 
 
